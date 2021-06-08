@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+<span>
+    <a routerLink="" mat-button>
+        <mat-icon>directions_bus</mat-icon> Terminal de Buses
+    </a>
+</span>
+
+<div>
+    <a mat-button routerLink="rutas/buscar">
+    <mat-icon>search</mat-icon>Buscar Rutas</a>
+</div>
+
+<app-autorizado [rol]="'admin'">
+    <ng-container autorizado>
+
+        <div>
+            <a mat-button routerLink="rutas">Rutas</a>
+        </div>
+        
+        <div>
+            <a mat-button routerLink="buses">Buses</a>
+        </div>
+        
+        <div>
+            <a mat-button routerLink="horarios">Horarios</a>
+        </div>
+        
+        <div>
+            <a mat-button routerLink="administradores">Administradores</a>
+        </div>
+
+    </ng-container>
+</app-autorizado>
+
+<div class="espacio"></div>
+
+<app-autorizado>
+    <ng-container autorizado>
+        <span>Hola, {{seguridadService.obtenerCampoJWT('email')}}</span>
+        <a mat-button (click)="seguridadService.logout()">Logout</a>
+    </ng-container>
+    <ng-container noAutorizado>
+        <a mat-button routerLink="login">Login</a>
+        <a mat-button routerLink="registro">Registro</a>
+    </ng-container>
+</app-autorizado>
+
+</mat-toolbar>

@@ -1,0 +1,46 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Nombre Usuario*</mat-label>
+        <input formControlName="nombreUsuario" matInput>
+        <mat-error> El campo de nombre usuario es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Contraseña*</mat-label>
+        <input formControlName="contraseña" matInput>
+        <mat-error> El campo de contraseña es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Correo Electronico*</mat-label>
+        <input formControlName="correo" matInput>
+        <mat-error> El campo de correo es requerido</mat-error>
+    </mat-form-field>
+
+    
+
+    <mat-form-field appearance="outline">
+        <mat-label>Fecha de Habilitacion</mat-label>
+        <input formControlName="fechaHabilitacion" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!--<mat-checkbox formControlName="habilitado">Habilitado</mat-checkbox>-->
+
+    <h4>Seleccionar Imagen</h4>
+
+    <app-input-img
+        [urlImagenActual]="modelo?.foto"
+    (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Guardar Cambios
+        </button>
+        <a mat-stroked-button routerLink="/administradores">Cancelar</a>
+    </div>
+
+</form>

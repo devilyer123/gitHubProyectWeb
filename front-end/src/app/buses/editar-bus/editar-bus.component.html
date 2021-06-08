@@ -1,0 +1,8 @@
+<h2>Edita Bus</h2>
+
+<app-formulario-buses *ngIf="modelo"
+[modelo]="modelo"
+[errores]="errores"
+(onSubmit)="guardarCambios($event)"></app-formulario-buses>
+
+<mat-spinner *ngIf="!modelo"></mat-spinner>

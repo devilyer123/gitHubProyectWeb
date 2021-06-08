@@ -1,0 +1,32 @@
+<app-listado-generico [listado]="buses">
+    <ng-container contenido>
+      <div class="buses-contenedor">
+              
+        <div *ngFor="let bus of buses; let index = index" class="bus-contenedor">
+            <a>
+              <img [src]="bus.poster" alt="Poster">
+            </a>
+            <p>
+              <a>{{bus.tipoBus}}</a>
+            </p>
+
+            <app-autorizado [rol]="'admin'">
+              <ng-container autorizado>
+
+                <div>
+                  <a mat-flat-button color="primary">Editar</a>
+                  <button mat-flat-button color="warn" type="button">Borrar</button>
+                </div>
+                
+              </ng-container>
+              <!--<ng-container noAutorizado>
+                  no estas autenticado
+              </ng-container>-->
+          </app-autorizado>
+          
+
+            
+          </div>
+        </div>
+    </ng-container>
+  </app-listado-generico>

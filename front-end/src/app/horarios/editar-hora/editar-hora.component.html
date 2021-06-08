@@ -1,0 +1,7 @@
+<h2>Editar Horario</h2>
+
+<app-formulario-horarios *ngIf="modelo"
+[modelo]="modelo" 
+(OnSubmit)="guardarCambios($event)"></app-formulario-horarios>
+
+<mat-spinner *ngIf="!modelo"></mat-spinner>

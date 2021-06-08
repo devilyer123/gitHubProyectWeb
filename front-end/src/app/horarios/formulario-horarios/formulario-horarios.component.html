@@ -1,0 +1,34 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Hora de salida*</mat-label>
+        <input formControlName="horasalida" matInput />
+        <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Minutos de salida*</mat-label>
+        <input formControlName="minutossalida" matInput />
+        <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre2()}}</mat-error>
+    </mat-form-field>
+
+    <!--<h4>Seleccione la terminal en el mapa</h4>
+
+    <div>
+        <app-mapa
+        (coordenadaSeleccionada)="coordenadaSeleccionada($event)"
+        [coordenadasIniciales]="coordenadaInicial"
+        ></app-mapa>
+    </div>-->
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Guardar Cambios
+        </button>
+        <a mat-stroked-button routerLink="/horarios">
+            Cancelar
+        </a>
+    </div>
+</form>

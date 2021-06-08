@@ -1,0 +1,5 @@
+<!--<button mat-flat-button color="primary" type="button" (click)="guardarCambios()">Guardar Hora</button>-->
+<h2>Crear Horario</h2>
+
+<app-formulario-horarios [errores]="errores" 
+(onSubmit)="guardarCambios($event)"></app-formulario-horarios>

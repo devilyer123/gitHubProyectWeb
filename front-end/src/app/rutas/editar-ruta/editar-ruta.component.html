@@ -1,0 +1,7 @@
+<h2>Editar Ruta</h2>
+
+<app-formulario-ruta  *ngIf="modelo"
+[modelo]="modelo" 
+(onSubmit)="guardarCambios($event)"></app-formulario-ruta>
+
+<mat-spinner *ngIf="!modelo"></mat-spinner>

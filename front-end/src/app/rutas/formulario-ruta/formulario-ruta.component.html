@@ -1,0 +1,46 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Origen*</mat-label>
+        <mat-select formControlName="origenId">
+            <mat-option *ngFor="let origen of origenes" [value]="origen.id">{{origen.nombreDep1}}</mat-option>
+            <mat-error *ngIf="form.invalid">Seleccione un Origen</mat-error>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Destino*</mat-label>
+        <mat-select formControlName="destinoId">
+            <mat-option *ngFor="let destino of destinos" [value]="destino.id">{{destino.nombreDep2}}</mat-option>
+            <mat-error *ngIf="form.invalid">Seleccione un Origen</mat-error>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Porcentaje*</mat-label>
+        <input formControlName="porcentaje" matInput>
+        <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Duracion de Viaje Aproximado*</mat-label>
+        <input formControlName="duraViaAprox" matInput>
+        <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre2()}}</mat-error>
+    </mat-form-field>
+
+    <div class="contenedor-limpiar">
+        <button mat-flat-button (click)="limpiar()" color="warn">Limpiar</button>
+    </div>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Guardar Cambios
+        </button>
+        <a mat-stroked-button routerLink="/rutas">
+            Cancelar
+        </a>
+    </div>
+</form>
+

@@ -1,0 +1,40 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Tipo de Bus*</mat-label>
+        <mat-select formControlName="tipoBusId">
+            <mat-option *ngFor="let tipoBus of tipoBuses" [value]="tipoBus.id">{{tipoBus.tipo}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.invalid">Seleccione un Origen</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Capacidad de Bus*</mat-label>
+        <input formControlName="capBus" matInput />
+        <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Costo de Asiento*</mat-label>
+        <input formControlName="costoAsiento" matInput />
+        <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre2()}}</mat-error>
+    </mat-form-field>
+
+    <!--<mat-form-field appearance="outline">
+        <mat-label>Costo de Asiento</mat-label>
+        <input formControlName="costoAsiento" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>CALENDARIO POR SI SE NECESITA-->
+
+    <!--<app-input-img [urlImagenActual]="modelo?.foto" (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>-->
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Guardar Cambios
+        </button>
+        <a mat-stroked-button routerLink="/buses">Cancelar</a>
+    </div>
+</form>

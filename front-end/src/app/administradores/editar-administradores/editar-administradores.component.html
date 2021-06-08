@@ -1,0 +1,8 @@
+<h2>
+    Editar Administradores
+</h2>
+
+<app-formulario-administradores *ngIf="modelo"
+ [modelo]="modelo" (OnSubmit)="guardarCambios($event)"></app-formulario-administradores>
+
+<mat-spinner *ngIf="!modelo"></mat-spinner>

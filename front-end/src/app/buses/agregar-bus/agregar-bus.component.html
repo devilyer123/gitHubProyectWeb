@@ -1,0 +1,6 @@
+<!--<button mat-flat-button color="primary" type="button" (click)="guardarCambios()">Guardar Bus</button>-->
+<h2>Agregar Bus</h2>
+
+<app-formulario-buses 
+[errores] = "errores"
+(onSubmit)="guardarCambios($event)"></app-formulario-buses>

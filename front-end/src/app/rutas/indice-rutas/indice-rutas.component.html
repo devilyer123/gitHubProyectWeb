@@ -1,0 +1,59 @@
+<h2>Rutas</h2>
+
+<button mat-flat-button color="primary" routerLink="/rutas/crear">Crear Nueva Ruta</button>
+<button mat-flat-button color="primary" routerLink="/rutas/editar/:id">Editar Ruta</button>
+<button mat-flat-button color="primary" routerLink="/rutas/eliminar">Eliminar Ruta</button>
+
+<app-listado-generico [listado]="rutas">
+    <ng-container contenido>
+        <table #table mat-table [dataSource]="rutas" class="mat-elevation-z8 tabla-indice">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+            </ng-container>
+            <ng-container matColumnDef="origenId">
+                <th mat-header-cell *matHeaderCellDef>Origen</th>
+                <td mat-cell *matCellDef="let element">{{element.origenId}}</td>
+            </ng-container>
+            <ng-container matColumnDef="destinoId">
+                <th mat-header-cell *matHeaderCellDef>Destino</th>
+                <td mat-cell *matCellDef="let element">{{element.destinoId}}</td>
+            </ng-container>
+            <ng-container matColumnDef="porcentaje">
+                <th mat-header-cell *matHeaderCellDef>Precio de Viaje</th>
+                <td mat-cell *matCellDef="let element">{{element.porcentaje}}</td>
+            </ng-container>
+            <ng-container matColumnDef="duraViaAprox">
+                <th mat-header-cell *matHeaderCellDef>Duracion de Viaje Aproximado</th>
+                <td mat-cell *matCellDef="let element">{{element.duraViaAprox}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let element">
+                    <a routerLink="/rutas/editar/{{ element.id }}"
+                    mat-flat-button
+                    color="primary">Editar</a>
+
+                    <button mat-flat-button color="warn" 
+                    [swal]="{icon: 'warning' ,title: 'Confirmación',
+                    text: '¿Está seguro que desea borrar el registro?',
+                    showCancelButton: true}"
+                    (confirm)="borrar(element.id)">Borrar</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnasAMostrar"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnasAMostrar"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons
+        [length]="cantidadTotalRegistros" [pageSize]="cantidadRegistrosAMostrar"
+        class="mat-elevation-z8"
+        (page)="actualizarPaginacion($event)"
+        >
+
+        </mat-paginator>
+
+    </ng-container>
+</app-listado-generico>

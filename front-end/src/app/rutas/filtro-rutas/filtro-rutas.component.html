@@ -1,0 +1,29 @@
+<h2>Buscar Rutas</h2>
+
+<form [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Origen</mat-label>
+        <input formControlName="tipoBus" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Destino</mat-label>
+        <mat-select formControlName="destinoId">
+            <mat-option *ngFor="let destino of destinos" [value]="destino.id">{{destino.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div>
+        <mat-checkbox formControlName="busesProximos">Buses Proximos</mat-checkbox>
+    </div>
+
+    <div>
+        <mat-checkbox formControlName="busesActuales">Buses Actuales</mat-checkbox>
+    </div>
+
+    <div class="contenedor-limpiar">
+        <button mat-flat-button (click)="limpiar()" color="warn">Limpiar</button>
+    </div>
+</form>
+
+<app-listado-buses [buses]="destinos2"></app-listado-buses>
