@@ -8,11 +8,11 @@ namespace back_end.DTOs
 {
     public class RutasCreacionDTO
     {
-        public int origenId { get; set; }
-        public int destinoId { get; set; }
-        //[Range(30, 150)]
-        public int porcentaje { get; set; }
-        //[Range(3, 18)]
+        public string origen { get; set; }
+        public string destino { get; set; }
+        [Range(30, 150)]
+        public int costoRuta { get; set; }
+        [Range(3, 18)]
         public int duraViaAprox { get; set; }
     }
 }

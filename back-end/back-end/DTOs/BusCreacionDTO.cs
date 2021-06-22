@@ -8,7 +8,7 @@ namespace back_end.DTOs
 {
     public class BusCreacionDTO
     {
-        public int tipoBusId { get; set; }
+        public string tipoBus { get; set; }
         [Range(30, 100)]
         public int capBus { get; set; }
         [Range(30, 150)]

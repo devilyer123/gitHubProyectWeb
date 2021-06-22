@@ -1,0 +1,95 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+
+    <h3>Rutas</h3>
+
+    <input class="botoncito"  type="text" #textId>
+    <mat-icon (click)="getUser(textId.value)">search</mat-icon><br/><p></p>
+
+    <mat-form-field appearance="outline" *ngIf="ruta">
+        <mat-label>Origen*</mat-label>
+        <input formControlName="origen" [(ngModel)]="formularioGenTickets.origen" [ngModelOptions]="{standalone: true}" readonly matInput/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="ruta" >
+        <mat-label>Destino*</mat-label>
+        <input formControlName="destino" [(ngModel)]="formularioGenTickets.destino" [ngModelOptions]="{standalone: true}" readonly matInput/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="ruta">
+        <mat-label>Costo Ruta*</mat-label>
+        <input value="{{ruta.costoRuta}}"  matInput readonly/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="ruta">
+        <mat-label>Duracion de viaje Aproximado*</mat-label>
+        <input value="{{ruta.duraViaAprox}}"  matInput readonly/>
+    </mat-form-field>
+
+    <h3>Buses</h3>
+
+    <input class="botoncito"  type="text" #textId2>
+    <mat-icon (click)="getUser2(textId2.value)">search</mat-icon><br/><p></p>
+    
+    <mat-form-field appearance="outline" *ngIf="bus" >
+        <mat-label>Tipo de Bus*</mat-label>
+        <input formControlName="tipoBus" [(ngModel)]="formularioGenTickets.tipoBus" [ngModelOptions]="{standalone: true}" readonly  matInput/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="bus">
+        <mat-label>Capacidad de Bus*</mat-label>
+        <input value="{{bus.capBus}}"  matInput readonly/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="bus">
+        <mat-label>Costo de Asiento*</mat-label>
+        <input value="{{bus.costoAsiento}}" matInput readonly/>
+    </mat-form-field>
+
+    <h3>Horas</h3>
+    
+    <input class="botoncito"  type="text" #textId3>
+    <mat-icon (click)="getUser3(textId3.value)">search</mat-icon><br/><p></p>
+
+    <mat-form-field appearance="outline" *ngIf="hora" >
+        <mat-label>Hora de salida*</mat-label>
+        <input formControlName="horaSalida" value="{{hora.horaSalida}}" matInput/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="hora">
+        <mat-label>Minutos de salida*</mat-label>
+        <input value="{{hora.minutoSalida}}"  matInput readonly/>
+    </mat-form-field>
+
+    <h3>Finalizacion de Ticket</h3>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Fecha de Salida</mat-label>
+        <input formControlName="fechaSalida" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Hora de Llegada*</mat-label>
+        <input formControlName="horaLlegada" matInput>
+        <mat-error> El campo de hora es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Costo Ticket*</mat-label>
+        <input formControlName="costoTicket" matInput>
+        <mat-error> El campo de nombre usuario es requerido</mat-error>
+    </mat-form-field>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Guardar Cambios
+        </button>
+        <a mat-stroked-button routerLink="/tickets">
+            Cancelar
+        </a>
+    </div>
+
+</form>

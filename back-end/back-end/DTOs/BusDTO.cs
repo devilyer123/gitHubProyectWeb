@@ -8,7 +8,7 @@ namespace back_end.DTOs
     public class BusDTO
     {
         public int Id { get; set; }
-        public int tipoBusId { get; set; }
+        public string tipoBus { get; set; }
         public int capBus { get; set; }
         public int costoAsiento { get; set; }
     }

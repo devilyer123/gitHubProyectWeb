@@ -4,8 +4,8 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Tipo de Bus*</mat-label>
-        <mat-select formControlName="tipoBusId">
-            <mat-option *ngFor="let tipoBus of tipoBuses" [value]="tipoBus.id">{{tipoBus.tipo}}</mat-option>
+        <mat-select formControlName="tipoBus">
+            <mat-option *ngFor="let tipoBus of tipoBuses" [value]="tipoBus.value">{{tipoBus.tipo}}</mat-option>
         </mat-select>
         <mat-error *ngIf="form.invalid">Seleccione un Origen</mat-error>
     </mat-form-field>

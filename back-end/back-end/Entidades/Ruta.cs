@@ -10,13 +10,10 @@ namespace back_end.Entidades
     {
         public int Id { get; set; }
         [Required]
-        public int origenId { get; set; }
-        public int destinoId { get; set; }
-        public int porcentaje { get; set; }
+        public string origen { get; set; }
+        public string destino { get; set; }
+        public int costoRuta { get; set; }
         public int duraViaAprox { get; set; }
-
-
-
-
+        //public List<TicketsRutas> TicketsRutas { get; set; }
     }
 }

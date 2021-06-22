@@ -216,3 +216,4 @@ D:\Proyectos\PruebaWeb2\back-end\back-end\obj\Debug\net5.0\back-end.dll
 D:\Proyectos\PruebaWeb2\back-end\back-end\obj\Debug\net5.0\ref\back-end.dll
 D:\Proyectos\PruebaWeb2\back-end\back-end\obj\Debug\net5.0\back-end.pdb
 D:\Proyectos\PruebaWeb2\back-end\back-end\obj\Debug\net5.0\back-end.genruntimeconfig.cache
+D:\Proyectos\PruebaWeb2\back-end\back-end\bin\Debug\net5.0\Newtonsoft.Json.dll

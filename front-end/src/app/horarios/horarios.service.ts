@@ -24,20 +24,20 @@ export class HorariosService {
     return this.http.get<horarioDTO>(`${this.apiURL}/${id}`);
   }
   
-  public crear(horario: horarioCreacionDTO){
+  public agregar(horario: horarioCreacionDTO){
     return this.http.post(this.apiURL, horario);
   }
 
   public editar(id:number, horario: horarioCreacionDTO) {
-    const formData = this.construirFormData(horario);
-    return this.http.put(`${this.apiURL}/${id}`, formData);
+    //const formData = this.construirFormData(horario);
+    return this.http.put(`${this.apiURL}/${id}`, horario/*formData*/);
   }
 
   private construirFormData(horario: horarioCreacionDTO): FormData {
     const formData = new FormData();
-    formData.append('horasalida', horario.horasalida.toString());
-    if (horario.minutossalida){
-      formData.append('minutossalida', horario.minutossalida.toString());
+    formData.append('horaSalida', horario.horaSalida.toString());
+    if (horario.minutoSalida){
+      formData.append('minutoSalida', horario.minutoSalida.toString());
     }
     
     return formData;
@@ -45,6 +45,11 @@ export class HorariosService {
 
   public borrar(id: number){
     return this.http.delete(`${this.apiURL}/${id}`);
+  }
+
+  getUser3(Id: string): Observable<horarioDTO>{
+    //url = 'rutas/editar' + '/' +Id;
+    return this.http.get<horarioDTO>(`${this.apiURL}/${Id}`);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,20 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  departamentos = [
+    { value: 'pando', nombreDep: 'Pando'},
+    { value: 'la paz', nombreDep: 'La Paz'},
+    { value: 'beni', nombreDep: 'Beni'},
+    { value: 'oruro', nombreDep: 'Oruro'},
+    { value: 'cochabamba', nombreDep: 'Cochabamba'},
+    { value: 'santa cruz', nombreDep: 'Santa Cruz'},
+    { value: 'potosi', nombreDep: 'Potosi'},
+    { value: 'tarija', nombreDep: 'Tarija'},
+    { value: 'chuquisaca', nombreDep: 'Chuquisaca'}   
+  ];
+
   ngOnInit(): void {
-      this.busesActuales = [{
-        tipoBus: 'Leito',
-        fechaLanzamiento: new Date(),
-        precio: 349.99, 
-        poster: 'https://www.la-razon.com/wp-content/uploads/2020/06/Terminal-de-Buses-de-La-Paz-AMN-2-1024x682.jpeg'
-      },{
-        tipoBus: 'Normal',
-        fechaLanzamiento: new Date('2021-05-02'),
-        precio: 99.99,
-        poster: 'https://www.la-razon.com/wp-content/uploads/2020/06/Terminal-de-Buses-de-La-Paz-AMN-2-1024x682.jpeg'
-      }];
+    this.firstFormGroup = this.formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
-  busesActuales;
-  busesProximos = [];
 
 }

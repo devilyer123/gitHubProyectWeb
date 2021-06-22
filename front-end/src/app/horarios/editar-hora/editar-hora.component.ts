@@ -23,8 +23,8 @@ export class EditarHoraComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.horariosServices.obtenerPorId(params.id)
-      .subscribe(bus => {
-        this.modelo = bus;
+      .subscribe(horario => {
+        this.modelo = horario;
       }, () => this.router.navigate(['/horarios']))
     });
   }

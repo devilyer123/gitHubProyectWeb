@@ -257,25 +257,26 @@ namespace back_end.Migrations
                     b.Property<int>("costoAsiento")
                         .HasColumnType("int");
 
-                    b.Property<int>("tipoBusId")
-                        .HasColumnType("int");
+                    b.Property<string>("tipoBus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Buses");
                 });
 
-            modelBuilder.Entity("back_end.Entidades.Horarios", b =>
+            modelBuilder.Entity("back_end.Entidades.Horario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("horasalida")
+                    b.Property<int>("horaSalida")
                         .HasColumnType("int");
 
-                    b.Property<int>("minutossalida")
+                    b.Property<int>("minutoSalida")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -290,21 +291,55 @@ namespace back_end.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("destinoId")
+                    b.Property<int>("costoRuta")
                         .HasColumnType("int");
+
+                    b.Property<string>("destino")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("duraViaAprox")
                         .HasColumnType("int");
 
-                    b.Property<int>("origenId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("porcentaje")
-                        .HasColumnType("int");
+                    b.Property<string>("origen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Rutas");
+                });
+
+            modelBuilder.Entity("back_end.Entidades.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("costoTicket")
+                        .HasColumnType("int");
+
+                    b.Property<string>("destino")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("fechaSalida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("horaLlegada")
+                        .HasColumnType("int");
+
+                    b.Property<int>("horaSalida")
+                        .HasColumnType("int");
+
+                    b.Property<string>("origen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("tipoBus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

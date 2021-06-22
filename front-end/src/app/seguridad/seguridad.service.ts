@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { credencialesUsuario, respuestaAutenticacion } from './seguridad';
+import { credencialesUsuario, respuestaAutenticacion, usuarioDTO } from './seguridad';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,25 @@ export class SeguridadService {
   apiURL = environment.apiURL + 'cuentas'
   private readonly llaveToken = 'token';
   private readonly llaveExpiracion = 'token-expiracion';
+  private readonly campoRol = 'role';
+
+  obetenerUsuarios(pagina: number, recordsPorPagina: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('pagina', pagina.toString());
+    params = params.append('recordsPorPagina', recordsPorPagina.toString());
+    return this.httpClient.get<usuarioDTO[]>(`${this.apiURL}/listadousuarios`,
+    {observe: 'response', params})
+  }
+
+  hacerAdmin(usuarioId: string){
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.apiURL}/hacerAdmin`, JSON.stringify(usuarioId), {headers});
+  }
+
+  removerAdmin(usuarioId: string){
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.httpClient.post(`${this.apiURL}/removerAdmin`, JSON.stringify(usuarioId), {headers});
+  }
 
   estaLogueado(): boolean{
 
@@ -40,7 +59,7 @@ export class SeguridadService {
   }
 
   obtenerRol(): string{
-    return 'admin';
+    return this.obtenerCampoJWT(this.campoRol);
   }
 
   obtenerCampoJWT(campo: string): string{
@@ -62,4 +81,9 @@ export class SeguridadService {
     localStorage.setItem(this.llaveToken, respuestaAutenticacion.token);
     localStorage.setItem(this.llaveExpiracion, respuestaAutenticacion.expiracion.toString());
   }
+
+  obtenerToken(){
+    return localStorage.getItem(this.llaveToken);
+  }
+  
 }

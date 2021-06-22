@@ -9,9 +9,9 @@ namespace back_end.DTOs
     public class RutasDTO
     {
         public int Id { get; set; }
-        public int origenId { get; set; }
-        public int destinoId { get; set; }
-        public int porcentaje { get; set; }
+        public string origen { get; set; }
+        public string destino { get; set; }
+        public int costoRuta { get; set; }
         public int duraViaAprox { get; set; }
     }
 }

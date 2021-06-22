@@ -14,13 +14,13 @@ export class FormularioBusesComponent implements OnInit {
   form: FormGroup;
 
   tipoBuses = [
-    { id: 1, tipo: 'Normal'},
-    { id: 2, tipo: 'Semi-Leito'},
-    { id: 3, tipo: 'Leito'}
+    { value: 'normal', tipo: 'Normal'},
+    { value: 'semi-leito', tipo: 'Semi-Leito'},
+    { value: 'leito', tipo: 'Leito'}
   ];
 
   formularioGenBuses={
-    tipoBusId: 1,
+    tipoBus: '',
     capBus: ['',
       {
         validators: [Validators.required, Validators.maxLength(2)],

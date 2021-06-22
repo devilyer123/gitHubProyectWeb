@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { HammerModule } from "@angular/platform-browser";
 
 
@@ -17,6 +17,10 @@ import "leaflet/dist/images/marker-shadow.png";
 import 'leaflet/dist/images/marker-icon-2x.png';
 import {MatTableModule} from '@angular/material/table'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
+
+import {FormsModule} from '@angular/forms'
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {MatStepperModule} from '@angular/material/stepper';
 
 import {MaterialModule} from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
@@ -51,6 +55,13 @@ import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component
 import { LoginComponent } from './seguridad/login/login.component';
 import { RegistroComponent } from './seguridad/registro/registro.component';
 import { FormularioAutenticacionComponent } from './seguridad/formulario-autenticacion/formulario-autenticacion.component';
+import { SeguridadInterceptorService } from './seguridad/seguridad-interceptor.service';
+import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usuarios.component';
+import { CrearTicketComponent } from './tickets/crear-ticket/crear-ticket.component';
+import { IndiceTicketComponent } from './tickets/indice-ticket/indice-ticket.component';
+import { EditarTicketComponent } from './tickets/editar-ticket/editar-ticket.component';
+import { EliminarTicketComponent } from './tickets/eliminar-ticket/eliminar-ticket.component';
+import { FormularioTicketComponent } from './tickets/formulario-ticket/formulario-ticket.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +99,13 @@ import { FormularioAutenticacionComponent } from './seguridad/formulario-autenti
     AutorizadoComponent,
     LoginComponent,
     RegistroComponent,
-    FormularioAutenticacionComponent
+    FormularioAutenticacionComponent,
+    IndiceUsuariosComponent,
+    CrearTicketComponent,
+    IndiceTicketComponent,
+    EditarTicketComponent,
+    EliminarTicketComponent,
+    FormularioTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -100,10 +117,17 @@ import { FormularioAutenticacionComponent } from './seguridad/formulario-autenti
     HttpClientModule,
     MatTableModule,
     HammerModule,
+    FormsModule,
+    CdkStepperModule,
+    MatStepperModule,
     MarkdownModule.forRoot(),
     SweetAlert2Module.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SeguridadInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

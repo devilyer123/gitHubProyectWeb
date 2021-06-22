@@ -2,6 +2,8 @@
 using back_end.DTOs;
 using back_end.Entidades;
 using back_end.Utilidades;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,7 +15,7 @@ namespace back_end.Controllers
 {
     [Route("api/rutas")]
     [ApiController]
-
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "EsAdmin")]
     public class RutasController: ControllerBase
     {
         private readonly ApplicationDbContext context;
@@ -30,7 +32,7 @@ namespace back_end.Controllers
         {
             var queryable = context.Rutas.AsQueryable();
             await HttpContext.InsertarParametrosPaginacionEnCabecera(queryable);
-            var rutas = await queryable.OrderBy(x => x.origenId).Paginar(paginacionDTO).ToListAsync();
+            var rutas = await queryable.OrderBy(x => x.origen).Paginar(paginacionDTO).ToListAsync();
             return mapper.Map<List<RutasDTO>>(rutas);
         }
 
@@ -54,6 +56,17 @@ namespace back_end.Controllers
             context.Add(ruta);
             await context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpPost("obtenerPorOrigen")]
+        public async Task<ActionResult<List<TicketRutaDTO>>> BuscarPorOrigen([FromBody] string origen)
+        {
+            if (string.IsNullOrWhiteSpace(origen)) { return new List<TicketRutaDTO>(); }
+            return await context.Rutas
+                .Where(x => x.origen.Contains(origen))
+                .Select(x => new TicketRutaDTO { Id = x.Id, origen = x.origen, destino = x.destino, costoRuta = x.costoRuta, duraViaAprox = x.duraViaAprox })
+                .Take(5)
+                .ToListAsync();
         }
 
         [HttpPut("{Id:int}")]

@@ -18,6 +18,7 @@ namespace back_end.Controllers
 {
     [Route("api/buses")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "EsAdmin")]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BusesController: ControllerBase
     {
@@ -40,7 +41,7 @@ namespace back_end.Controllers
         {
             var queryable = context.Buses.AsQueryable();
             await HttpContext.InsertarParametrosPaginacionEnCabecera(queryable);
-            var buses = await queryable.OrderBy(x => x.tipoBusId).Paginar(paginacionDTO).ToListAsync();
+            var buses = await queryable.OrderBy(x => x.tipoBus).Paginar(paginacionDTO).ToListAsync();
             return mapper.Map<List<BusDTO>>(buses);
         }        
 

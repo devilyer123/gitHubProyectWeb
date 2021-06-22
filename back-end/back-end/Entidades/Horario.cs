@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace back_end.Entidades
 {
-    public class Horarios
+    public class Horario
     {
         public int Id { get; set; }
         [Required]
         [Range(0 , 24)]
-        public int horasalida { get; set; }
+        public int horaSalida { get; set; }
         [Range(0, 60)]
-        public int minutossalida { get; set; }
+        public int minutoSalida { get; set; }
 
+        //public List<TicketsHorarios> TicketsHorarios { get; set; }
     }
 }

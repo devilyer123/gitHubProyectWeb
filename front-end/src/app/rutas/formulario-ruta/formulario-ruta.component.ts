@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { primeraLetraMayuscula } from 'src/app/utilidades/validadores/primeraLetraMayuscula';
 import { rutaCracionDTO, rutaDTO } from '../ruta';
 
 @Component({
@@ -17,34 +15,22 @@ export class FormularioRutaComponent implements OnInit {
 
   form: FormGroup;
 
-  origenes = [
-    { id: 1, nombreDep1: 'Pando'},
-    { id: 2, nombreDep1: 'La Paz'},
-    { id: 3, nombreDep1: 'Beni'},
-    { id: 4, nombreDep1: 'Oruro'},
-    { id: 5, nombreDep1: 'Cochabamba'},
-    { id: 6, nombreDep1: 'Santa Cruz'},
-    { id: 7, nombreDep1: 'Potosi'},
-    { id: 8, nombreDep1: 'Tarija'},
-    { id: 9, nombreDep1: 'Chuquisaca'}   
-  ];
-
-  destinos = [
-    { id: 1, nombreDep2: 'Pando'},
-    { id: 2, nombreDep2: 'La Paz'},
-    { id: 3, nombreDep2: 'Beni'},
-    { id: 4, nombreDep2: 'Oruro'},
-    { id: 5, nombreDep2: 'Cochabamba'},
-    { id: 6, nombreDep2: 'Santa Cruz'},
-    { id: 7, nombreDep2: 'Potosi'},
-    { id: 8, nombreDep2: 'Tarija'},
-    { id: 9, nombreDep2: 'Chuquisaca'}   
+  departamentos = [
+    { value: 'pando', nombreDep: 'Pando'},
+    { value: 'la paz', nombreDep: 'La Paz'},
+    { value: 'beni', nombreDep: 'Beni'},
+    { value: 'oruro', nombreDep: 'Oruro'},
+    { value: 'cochabamba', nombreDep: 'Cochabamba'},
+    { value: 'santa cruz', nombreDep: 'Santa Cruz'},
+    { value: 'potosi', nombreDep: 'Potosi'},
+    { value: 'tarija', nombreDep: 'Tarija'},
+    { value: 'chuquisaca', nombreDep: 'Chuquisaca'}   
   ];
 
   formularioGenRutas={
-    origenId: 1,
-    destinoId: 2,
-    porcentaje: ['',{
+    origen: '',
+    destino: '',
+    costoRuta: ['',{
       validators: [Validators.required, Validators.maxLength(3)]
     }],
     duraViaAprox: ['',{
@@ -75,7 +61,7 @@ export class FormularioRutaComponent implements OnInit {
 
 
   obetenerErrorCampoNombre(){
-    var campo = this.form.get('porcentaje');
+    var campo = this.form.get('costoRuta');
     if (campo.hasError('required')){
       return 'El campo es requerido';
     }
@@ -103,9 +89,5 @@ export class FormularioRutaComponent implements OnInit {
 
     return '';
   }
-
-  limpiar(){
-    this.form.patchValue(this.formularioGenRutas);
-  } //revisar esta MRD
 
 }

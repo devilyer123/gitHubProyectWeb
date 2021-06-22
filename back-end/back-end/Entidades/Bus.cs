@@ -12,15 +12,12 @@ namespace back_end.Entidades
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        public int tipoBusId { get; set; }
-        //[StringLength(maximumLength: 2)]
+        public string tipoBus { get; set; }
         [Range(30, 100)]
         public int capBus { get; set; }
         [Range(30, 150)]
         public int costoAsiento { get; set; }
-       
 
-
-
+        //public List<TicketsBuses> TicketsBuses { get; set; }
     }
 }

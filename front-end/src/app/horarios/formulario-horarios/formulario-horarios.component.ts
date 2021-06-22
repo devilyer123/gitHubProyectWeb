@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Coordenada } from 'src/app/utilidades/mapa/coordenada';
-import { horarioCreacionDTO } from '../horario';
+import { horarioCreacionDTO, horarioDTO } from '../horario';
 
 @Component({
   selector: 'app-formulario-horarios',
@@ -13,48 +12,30 @@ export class FormularioHorariosComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   form: FormGroup;
-  
-  @Input()
-  modelo: horarioCreacionDTO;
 
+  formularioGenHorarios={
+    horaSalida: ['',{
+      validators: [Validators.required, Validators.maxLength(2)]
+    }],
+    minutoSalida: ['',{
+      validators: [Validators.required, Validators.maxLength(2)]
+    }]
+  }
+  
   @Input()
   errores: string[]=[];
-  
+
+  @Input()
+  modelo: horarioDTO;
 
   @Output()
   onSubmit: EventEmitter<horarioCreacionDTO> = new EventEmitter<horarioCreacionDTO>();
 
-  //coordenadaInicial: Coordenada[] = [];
-
-  formularioGenHorarios={
-    horasalida: [
-      '',
-      {
-        validators: [Validators.required],
-      },
-    ],
-    minutossalida: [
-      '',
-      {
-        validators: [Validators.required],
-      },
-    ],
-   // latitud: [
-   //   '',
-   //  {
-     //  validators: [Validators.required]
-    // }
-  //  ],
-   //longitud: [
-   //   '',
-   //  {
-    //   validators: [Validators.required]
-   //  }
-   // ]
-  }
+  //coordenadaInicial: Coordenada[] = []; 
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(this.formularioGenHorarios);
+    
     if (this.modelo !== undefined){
       this.form.patchValue(this.modelo)
     }
@@ -69,7 +50,7 @@ export class FormularioHorariosComponent implements OnInit {
   }
 
   obetenerErrorCampoNombre(){
-    var campo = this.form.get('horasalida');
+    var campo = this.form.get('horaSalida');
     if (campo.hasError('required')){
       return 'El campo es requerido';
     }
@@ -82,7 +63,7 @@ export class FormularioHorariosComponent implements OnInit {
   }
 
   obetenerErrorCampoNombre2(){
-    var campo2 = this.form.get('minutossalida');
+    var campo2 = this.form.get('minutoSalida');
     if (campo2.hasError('required')){
       return 'El campo es requerido';
     }

@@ -14,7 +14,7 @@ export class IndiceRutasComponent implements OnInit {
   constructor(private rutasService: RutasService) { }
 
   rutas: rutaDTO[];
-  columnasAMostrar = ['id', 'origenId', 'destinoId', 'porcentaje', 'duraViaAprox', 'acciones'];
+  columnasAMostrar = ['id', 'origen', 'destino', 'costoRuta', 'duraViaAprox', 'acciones'];
   cantidadTotalRegistros;
   paginaActual = 1;
   cantidadRegistrosAMostrar = 10;

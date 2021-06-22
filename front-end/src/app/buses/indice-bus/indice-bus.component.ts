@@ -14,7 +14,7 @@ export class IndiceBusComponent implements OnInit {
   constructor(private busesService: BusesService) { }
 
   buses: busDTO[];
-  columnasAMostrar = ['id', 'tipoBusId', 'capBus', 'costoAsiento', 'acciones'];
+  columnasAMostrar = ['id', 'tipoBus', 'capBus', 'costoAsiento', 'acciones'];
   cantidadTotalRegistros;
   paginaActual = 1;
   cantidadRegistrosAMostrar = 10;

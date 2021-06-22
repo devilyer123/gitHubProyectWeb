@@ -7,6 +7,7 @@ import { credencialesUsuario } from '../seguridad';
   templateUrl: './formulario-autenticacion.component.html',
   styleUrls: ['./formulario-autenticacion.component.css']
 })
+
 export class FormularioAutenticacionComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
@@ -48,5 +49,7 @@ export class FormularioAutenticacionComponent implements OnInit {
 
     return '';
   }
+
+  hide = true;
 
 }

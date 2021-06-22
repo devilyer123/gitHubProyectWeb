@@ -4,23 +4,23 @@
     
     <mat-form-field appearance="outline">
         <mat-label>Origen*</mat-label>
-        <mat-select formControlName="origenId">
-            <mat-option *ngFor="let origen of origenes" [value]="origen.id">{{origen.nombreDep1}}</mat-option>
-            <mat-error *ngIf="form.invalid">Seleccione un Origen</mat-error>
+        <mat-select formControlName="origen">
+            <mat-option *ngFor="let origen of departamentos" [value]="origen.value">{{origen.nombreDep}}</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.invalid">Seleccione un Origen</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Destino*</mat-label>
-        <mat-select formControlName="destinoId">
-            <mat-option *ngFor="let destino of destinos" [value]="destino.id">{{destino.nombreDep2}}</mat-option>
-            <mat-error *ngIf="form.invalid">Seleccione un Origen</mat-error>
+        <mat-select formControlName="destino">
+            <mat-option *ngFor="let destino of departamentos" [value]="destino.value">{{destino.nombreDep}}</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.invalid">Seleccione un Destino</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Porcentaje*</mat-label>
-        <input formControlName="porcentaje" matInput>
+        <mat-label>Costo Ruta*</mat-label>
+        <input formControlName="costoRuta" matInput>
         <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre()}}</mat-error>
     </mat-form-field>
 
@@ -30,10 +30,7 @@
         <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre2()}}</mat-error>
     </mat-form-field>
 
-    <div class="contenedor-limpiar">
-        <button mat-flat-button (click)="limpiar()" color="warn">Limpiar</button>
-    </div>
-
+  
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
             Guardar Cambios

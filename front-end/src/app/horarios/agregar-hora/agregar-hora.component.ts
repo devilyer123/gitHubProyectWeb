@@ -20,7 +20,7 @@ export class AgregarHoraComponent implements OnInit {
   errores=[];
 
   guardarCambios(horario: horarioCreacionDTO){
-   this.horariosServices.crear(horario)
+   this.horariosServices.agregar(horario)
    .subscribe(() => {
     this.router.navigate(['/horarios']);
    },errores=> this.errores=parsearErroresAPI(errores))

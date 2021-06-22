@@ -1,8 +1,82 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
 
-<h2>Buses Actuales</h2>
+    <!--PRIMERA PARTE-->
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Rutas</ng-template>
+        <!--<mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>-->
+        <mat-form-field appearance="outline">
+            <mat-label>Origen*</mat-label>
+            <mat-select formControlName="origen">
+                <mat-option *ngFor="let origen of departamentos" [value]="origen.value">{{origen.nombreDep}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Destino*</mat-label>
+            <mat-select formControlName="destino">
+                <mat-option *ngFor="let destino of departamentos" [value]="destino.value">{{destino.nombreDep}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-user-input">
+            <mat-label>Cantidad de Pasajes</mat-label>
+            <input matInput type="number" [formControl]=""
+                   aria-label="Adds a delay between hovering away from the button and hiding the tooltip">
+            <mat-hint>personas</mat-hint>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--SEGUNDA PARTE-->
+    <mat-step [stepControl]="secondFormGroup" label="Flotas">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--TERCERA PARTE-->
+    <mat-step [stepControl]="secondFormGroup" label="Flotas">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--CUARTA PARTE-->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+<!--<h2>Buses Actuales</h2>
 
 <app-listado-buses [buses]="busesActuales"></app-listado-buses>
 
 <h2>Buses Proximos</h2>
 
-<app-listado-buses [buses]="busesProximos"></app-listado-buses>
+<app-listado-buses [buses]="busesProximos"></app-listado-buses>-->

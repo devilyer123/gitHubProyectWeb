@@ -2,6 +2,8 @@
 using back_end.DTOs;
 using back_end.Entidades;
 using back_end.Utilidades;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,15 +15,16 @@ namespace back_end.Controllers
 {
     [ApiController]
     [Route("api/horarios")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "EsAdmin")]
     public class HorariosController : ControllerBase
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
 
-        public HorariosController(ApplicationDbContext context ,IMapper maper)
+        public HorariosController(ApplicationDbContext context ,IMapper mapper)
         {
             this.context = context;
-            this.mapper = maper;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -29,7 +32,7 @@ namespace back_end.Controllers
         {
             var queryable = context.Horarios.AsQueryable();
             await HttpContext.InsertarParametrosPaginacionEnCabecera(queryable);
-            var horarios = await queryable.OrderBy(x => x.horasalida).Paginar(paginacionDTO).ToListAsync();
+            var horarios = await queryable.OrderBy(x => x.horaSalida).Paginar(paginacionDTO).ToListAsync();
             return mapper.Map<List<HorariosDTO>>(horarios);
         }
 
@@ -49,8 +52,8 @@ namespace back_end.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromForm] HorariosCreacionDTO horariosCreacionDTO )
         {
-            var horarios = mapper.Map<Horarios>(horariosCreacionDTO);
-            context.Add(horarios);
+            var horario = mapper.Map<Horario>(horariosCreacionDTO);
+            context.Add(horario);
             await context.SaveChangesAsync();
             return NoContent();
         }
@@ -80,7 +83,7 @@ namespace back_end.Controllers
             {
                 return NotFound();
             }
-            context.Remove(new Horarios() { Id = Id });
+            context.Remove(new Horario() { Id = Id });
             await context.SaveChangesAsync();
             return NoContent();
         }

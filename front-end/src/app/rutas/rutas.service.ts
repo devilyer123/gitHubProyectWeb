@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { rutaCracionDTO, rutaDTO } from './ruta';
+import { rutaCracionDTO, rutaDTO, rutaTicketDTO } from './ruta';
 
 @Injectable({
   providedIn: 'root'
@@ -24,23 +24,29 @@ export class RutasService {
     return this.http.get<rutaDTO>(`${this.apiURL}/${id}`);
   }
 
+  public obtenerPorOrigen(origen: string): Observable<rutaTicketDTO[]>{
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.http.post<rutaTicketDTO[]>(`${this.apiURL}/buscarPorOrigen`,
+    JSON.stringify(origen), {headers});
+  }
+
   public crear(rutas: rutaCracionDTO){
     return this.http.post(this.apiURL,rutas)
   }
 
   public editar(id:number, ruta: rutaCracionDTO) {
-    const formData = this.construirFormData(ruta);
-    return this.http.put(`${this.apiURL}/${id}`, formData);
+    //const formData = this.construirFormData(ruta);
+    return this.http.put(`${this.apiURL}/${id}`, ruta/*formData*/);
   }
 
   private construirFormData(ruta: rutaCracionDTO): FormData {
     const formData = new FormData();
-    formData.append('origenId', ruta.origenId.toString());
-    if (ruta.destinoId){
-      formData.append('destinoId', ruta.destinoId.toString());
+    formData.append('origen', ruta.origen);
+    if (ruta.destino){
+      formData.append('destino', ruta.destino.toString());
     }
-    if (ruta.porcentaje){
-      formData.append('porcentaje', ruta.porcentaje.toString());
+    if (ruta.costoRuta){
+      formData.append('costoRuta', ruta.costoRuta.toString());
     }
     if (ruta.duraViaAprox){
       formData.append('duraViaAprox', ruta.duraViaAprox.toString());
@@ -51,6 +57,11 @@ export class RutasService {
 
   public borrar(id: number){
     return this.http.delete(`${this.apiURL}/${id}`);
+  }
+
+  getUser(Id: string): Observable<rutaDTO>{
+    //url = 'rutas/editar' + '/' +Id;
+    return this.http.get<rutaDTO>(`${this.apiURL}/${Id}`);
   }
   
 }

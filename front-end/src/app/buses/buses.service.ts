@@ -36,4 +36,9 @@ export class BusesService {
   public borrar(id: number){
     return this.http.delete(`${this.apiURL}/${id}`);
   }
+
+  getUser2(Id: string): Observable<busDTO>{
+    //url = 'rutas/editar' + '/' +Id;
+    return this.http.get<busDTO>(`${this.apiURL}/${Id}`);
+  }
 }

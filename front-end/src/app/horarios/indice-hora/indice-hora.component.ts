@@ -14,7 +14,7 @@ export class IndiceHoraComponent implements OnInit {
   constructor(private horariosService: HorariosService) { }
 
   horarios: horarioDTO[];
-  columnasAMostrar = ['id', 'horasalida', 'minutossalida', 'acciones'];
+  columnasAMostrar = ['id', 'horaSalida', 'minutoSalida', 'acciones'];
   cantidadTotalRegistros;
   paginaActual = 1;
   cantidadRegistrosAMostrar = 10;

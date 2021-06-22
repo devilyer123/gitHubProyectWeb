@@ -4,24 +4,15 @@
     
     <mat-form-field appearance="outline">
         <mat-label>Hora de salida*</mat-label>
-        <input formControlName="horasalida" matInput />
+        <input formControlName="horaSalida" matInput />
         <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-        <mat-label>Minutos de salida*</mat-label>
-        <input formControlName="minutossalida" matInput />
+        <mat-label>Minuto de salida*</mat-label>
+        <input formControlName="minutoSalida" matInput />
         <mat-error *ngIf="form.invalid">{{obetenerErrorCampoNombre2()}}</mat-error>
     </mat-form-field>
-
-    <!--<h4>Seleccione la terminal en el mapa</h4>
-
-    <div>
-        <app-mapa
-        (coordenadaSeleccionada)="coordenadaSeleccionada($event)"
-        [coordenadasIniciales]="coordenadaInicial"
-        ></app-mapa>
-    </div>-->
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">

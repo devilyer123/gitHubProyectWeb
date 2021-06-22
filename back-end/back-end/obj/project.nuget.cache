@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nbn+dL/btnA+06mKnmwHtKEStvsAL2xA+uHcLVucoeVrTjLxv6xXKwAoEIU4fRjCAnFrj93A1OWusZf0b+xdew==",
+  "dgSpecHash": "hPrDHLia4ZJsTAU328LCckftQvu+dIUk7PfdFZ45AIfiBNMKP1ybJZq2NDe17WKq/I533JsbVPH0rtRxOokDxw==",
   "success": true,
   "projectFilePath": "D:\\Proyectos\\PruebaWeb2\\back-end\\back-end\\back-end.csproj",
   "expectedPackageFiles": [
@@ -48,6 +48,7 @@
     "C:\\Users\\wwwod\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\wwwod\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\wwwod\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\wwwod\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\wwwod\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\wwwod\\.nuget\\packages\\swashbuckle.aspnetcore\\6.1.4\\swashbuckle.aspnetcore.6.1.4.nupkg.sha512",
     "C:\\Users\\wwwod\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.4\\swashbuckle.aspnetcore.swagger.6.1.4.nupkg.sha512",

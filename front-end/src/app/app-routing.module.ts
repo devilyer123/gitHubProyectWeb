@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CrearAdministradoresComponent } from './administradores/crear-administradores/crear-administradores.component';
 import { EditarAdministradoresComponent } from './administradores/editar-administradores/editar-administradores.component';
@@ -18,8 +18,13 @@ import { EditarRutaComponent } from './rutas/editar-ruta/editar-ruta.component';
 import { EliminarRutaComponent } from './rutas/eliminar-ruta/eliminar-ruta.component';
 import { FiltroRutasComponent } from './rutas/filtro-rutas/filtro-rutas.component';
 import { IndiceRutasComponent } from './rutas/indice-rutas/indice-rutas.component';
+import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usuarios.component';
 import { LoginComponent } from './seguridad/login/login.component';
 import { RegistroComponent } from './seguridad/registro/registro.component';
+import { CrearTicketComponent } from './tickets/crear-ticket/crear-ticket.component';
+import { EditarTicketComponent } from './tickets/editar-ticket/editar-ticket.component';
+import { EliminarTicketComponent } from './tickets/eliminar-ticket/eliminar-ticket.component';
+import { IndiceTicketComponent } from './tickets/indice-ticket/indice-ticket.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -43,8 +48,14 @@ const routes: Routes = [
   {path: 'administradores/crear', component: CrearAdministradoresComponent, canActivate: [EsAdminGuard]},
   {path: 'administradores/editar/:id', component: EditarAdministradoresComponent, canActivate: [EsAdminGuard]},
 
+  {path: 'tickets', component: IndiceTicketComponent, canActivate: [EsAdminGuard]},
+  {path: 'tickets/crear', component: CrearTicketComponent, canActivate: [EsAdminGuard]},
+  {path: 'tickets/editar/:id', component: EditarTicketComponent, canActivate: [EsAdminGuard]},
+  {path: 'tickets/eliminar', component: EliminarTicketComponent, canActivate: [EsAdminGuard]},
+
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
+  {path: 'usuarios', component: IndiceUsuariosComponent, canActivate: [EsAdminGuard]},
 
   {path: '**', redirectTo: ''}
 ];

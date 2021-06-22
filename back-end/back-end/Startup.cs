@@ -16,6 +16,7 @@ using back_end.Utilidades;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace back_end
 {
@@ -23,6 +24,7 @@ namespace back_end
     {
         public Startup(IConfiguration configuration)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             Configuration = configuration;
         }
 
@@ -67,6 +69,10 @@ namespace back_end
                     ClockSkew = TimeSpan.Zero
                 });
 
+            services.AddAuthorization(opciones =>
+            {
+                opciones.AddPolicy("EsAdmin", policy => policy.RequireClaim("role", "admin"));
+            });
 
             services.AddControllers(options => {
 

@@ -2,6 +2,7 @@
 
 <app-formulario-ruta  *ngIf="modelo"
 [modelo]="modelo" 
+[errores]="errores"
 (onSubmit)="guardarCambios($event)"></app-formulario-ruta>
 
 <mat-spinner *ngIf="!modelo"></mat-spinner>
